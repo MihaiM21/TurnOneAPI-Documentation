@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ExternalLink } from "lucide-react"
 
 const footerLinks = {
@@ -29,10 +30,12 @@ export function SiteFooter() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="flex items-center justify-center w-7 h-7 rounded-md bg-primary">
-                <span className="text-primary-foreground font-black text-xs tracking-tight">T1</span>
-              </div>
-              <span className="text-foreground font-semibold text-sm">T1API</span>
+              <Image
+                src="/logo.png"
+                alt="T1API Logo"
+                width={28}
+                height={28}
+              />
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-[200px]">
               Real-time Formula 1 data. Built for developers who push the pace.

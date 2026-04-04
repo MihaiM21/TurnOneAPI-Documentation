@@ -21,7 +21,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
       {/* Main content — offset for sidebar + header */}
       <div className="lg:pl-64">
         <main className="pt-14 min-h-screen">
-          <div className="xl:pr-56">
+          <div className="xl:pr-4">
             {children}
           </div>
         </main>

@@ -49,7 +49,7 @@ export function DocsPageWrapper({ children, toc, prev, next }: DocsPageWrapperPr
   return (
     <div className="flex">
       {/* Content */}
-      <article className="flex-1 min-w-0 px-6 py-10 xl:px-10 max-w-3xl">
+      <article className="flex-1 min-w-0 px-6 py-10 xl:px-10">
         {children}
 
         {/* Prev / Next navigation */}

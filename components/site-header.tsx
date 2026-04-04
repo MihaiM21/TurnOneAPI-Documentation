@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Suspense, useState } from "react"
+import { Suspense, useState, useEffect } from "react"
 import { Menu, X, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -72,15 +73,36 @@ function HeaderNav() {
 }
 
 export function SiteHeader() {
+  const [apiVersion, setApiVersion] = useState<string>("1.0")
+
+  useEffect(() => {
+    const fetchVersion = async () => {
+      try {
+        const response = await fetch("https://api.t1f1.com/")
+        const data = await response.json()
+        if (data.version) {
+          setApiVersion(data.version)
+        }
+      } catch (error) {
+        console.error("Failed to fetch API version:", error)
+      }
+    }
+
+    fetchVersion()
+  }, [])
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-border bg-background/95 backdrop-blur-md">
       <div className="flex items-center h-full px-5 max-w-screen-xl mx-auto gap-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="flex items-center justify-center w-7 h-7 rounded-md bg-primary group-hover:bg-primary/90 transition-colors">
-            <span className="text-primary-foreground font-black text-xs tracking-tight">T1</span>
-          </div>
-          <span className="text-foreground font-semibold text-sm">T1API</span>
+          <Image
+            src="/logo.png"
+            alt="T1API Logo"
+            width={28}
+            height={28}
+            className="group-hover:opacity-90 transition-opacity"
+          />
         </Link>
 
         {/* Route-aware nav wrapped in Suspense */}
@@ -105,7 +127,7 @@ export function SiteHeader() {
         {/* Right side — static, no router dependency */}
         <div className="ml-auto flex items-center gap-2 shrink-0">
           <span className="hidden sm:flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded border border-border text-muted-foreground bg-secondary">
-            v1.0
+            v{apiVersion}
           </span>
           <a
             href="https://turnonehub.com/dashboard"
