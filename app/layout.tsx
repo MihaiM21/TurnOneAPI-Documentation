@@ -19,7 +19,9 @@ export const metadata: Metadata = {
     template: '%s — T1API',
   },
   description: 'Official API reference for Turn One Hub. Access real-time Formula 1 timing, telemetry, positions, and season data.',
-  generator: 'v0.app',
+  icons: {
+    icon: '/logo.png',
+  },
 }
 
 export const viewport: Viewport = {
