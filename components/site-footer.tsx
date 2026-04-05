@@ -12,13 +12,13 @@ const footerLinks = {
     { label: "Changelog", href: "/docs/changelog" },
   ],
   Resources: [
-    { label: "Turn One Hub", href: "https://turnonehub.com", external: true },
+    { label: "Turn One", href: "https://turnonehub.com", external: true },
     { label: "Dashboard", href: "https://turnonehub.com/dashboard", external: true },
-    { label: "Status Page", href: "https://status.turnonehub.com", external: true },
+    { label: "Status Page", href: "https://status.t1f1.com", external: true },
   ],
   Community: [
-    { label: "GitHub", href: "https://github.com/turnonehub", external: true },
-    { label: "Discord", href: "https://discord.gg/turnonehub", external: true },
+    { label: "GitHub", href: "https://github.com/Turn-One-Organization", external: true },
+    { label: "Discord", href: "https://discord.gg/rFWq3F6C8t", external: true },
   ],
 }
 
@@ -88,7 +88,7 @@ export function SiteFooter() {
               API v1.0
             </span>
             <a
-              href="https://status.turnonehub.com"
+              href="https://status.t1f1.com"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
