@@ -51,7 +51,7 @@ export function CodeBlock({ code, language = "bash", filename, className }: Code
       </div>
       {/* Code */}
       <div className="bg-code-bg overflow-x-auto">
-        <pre className="px-5 py-4 text-sm font-mono leading-relaxed text-foreground/90">
+        <pre className="px-3 py-3 md:px-5 md:py-4 text-sm font-mono leading-relaxed text-foreground/90">
           <code>{code}</code>
         </pre>
       </div>
@@ -76,7 +76,7 @@ export function TabCodeBlock({ tabs }: TabCodeBlockProps) {
   return (
     <div className="rounded-lg border border-code-border overflow-hidden">
       <div className="flex items-center justify-between bg-code-bg border-b border-code-border">
-        <div className="flex">
+        <div className="flex overflow-x-auto">
           {tabs.map((tab, i) => (
             <button
               key={tab.label}
@@ -110,7 +110,7 @@ export function TabCodeBlock({ tabs }: TabCodeBlockProps) {
         </button>
       </div>
       <div className="bg-code-bg overflow-x-auto">
-        <pre className="px-5 py-4 text-sm font-mono leading-relaxed text-foreground/90">
+        <pre className="px-3 py-3 md:px-5 md:py-4 text-sm font-mono leading-relaxed text-foreground/90">
           <code>{tabs[activeTab].code}</code>
         </pre>
       </div>

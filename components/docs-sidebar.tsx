@@ -3,9 +3,10 @@
 import { Suspense, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronDown, ChevronRight, Search } from "lucide-react"
+import { ChevronDown, ChevronRight, Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { docsNav, type NavSection } from "@/lib/docs-nav"
+import { SearchDialog } from "@/components/search-dialog"
 
 function NavSectionComponent({
   section,
@@ -91,19 +92,44 @@ function SidebarNavFallback() {
   )
 }
 
-export function DocsSidebar() {
+export function DocsSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [searchOpen, setSearchOpen] = useState(false)
+
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-64 bg-sidebar border-r border-sidebar-border flex flex-col z-30 pt-14">
+    <aside
+      className={cn(
+        "fixed left-0 top-0 bottom-0 w-64 bg-sidebar border-r border-sidebar-border flex flex-col z-30 pt-14",
+        "transition-transform duration-200 ease-in-out",
+        "lg:translate-x-0",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}
+    >
+      {/* Mobile close button */}
+      <div className="flex items-center justify-between px-4 py-2 border-b border-sidebar-border lg:hidden">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Navigation</span>
+        <button
+          onClick={onClose}
+          className="p-1 text-muted-foreground hover:text-foreground rounded-md hover:bg-secondary transition-colors"
+          aria-label="Close navigation"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+
       {/* Search */}
       <div className="px-3 py-3 border-b border-sidebar-border">
-        <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-secondary border border-border text-muted-foreground cursor-pointer hover:border-primary/50 transition-colors">
+        <button
+          onClick={() => setSearchOpen(true)}
+          className="flex w-full items-center gap-2 px-3 py-2 rounded-md bg-secondary border border-border text-muted-foreground cursor-pointer hover:border-primary/50 transition-colors"
+        >
           <Search className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          <span className="text-xs flex-1">Search docs...</span>
+          <span className="text-xs flex-1 text-left">Search docs...</span>
           <kbd className="text-[10px] font-mono border border-border rounded px-1 bg-background hidden sm:block">
             ⌘K
           </kbd>
-        </div>
+        </button>
       </div>
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
 
       {/* Navigation wrapped in Suspense for usePathname */}
       <Suspense fallback={<SidebarNavFallback />}>

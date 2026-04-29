@@ -49,12 +49,12 @@ export function DocsPageWrapper({ children, toc, prev, next }: DocsPageWrapperPr
   return (
     <div className="flex">
       {/* Content */}
-      <article className="flex-1 min-w-0 px-6 py-10 xl:px-10">
+      <article className="flex-1 min-w-0 px-4 py-6 md:px-6 md:py-10 xl:px-10">
         {children}
 
         {/* Prev / Next navigation */}
         {(prev || next) && (
-          <div className="flex items-center justify-between mt-14 pt-8 border-t border-border">
+          <div className="flex flex-wrap items-center justify-between gap-y-4 mt-14 pt-8 border-t border-border">
             {prev ? (
               <Link
                 href={prev.href}

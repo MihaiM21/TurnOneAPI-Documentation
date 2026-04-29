@@ -35,6 +35,24 @@ interface Release {
 
 const releases: Release[] = [
   {
+    id: "v1-3-5",
+    version: "v1.3.5",
+    date: "April 18, 2026",
+    summary: "Updated the data for Bahrain and Saudi Arabian GPs.",
+    changes: [
+      { type: "fixed", text: "Added cancelled info for the bahrain and saudi arabian gps." },
+    ],
+  },
+  {
+    id: "v1-3-4",
+    version: "v1.3.4",
+    date: "April 7, 2026",
+    summary: "New static data endpoints for driver and team data.",
+    changes: [
+      { type: "improved", text: "Added static data endpoints for driver and team data." },
+    ],
+  },
+  {
     id: "v1-3-3",
     version: "v1.3.3",
     date: "April 3, 2026",

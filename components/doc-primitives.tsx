@@ -4,7 +4,7 @@ export function DocH1({ id, children }: { id?: string; children: React.ReactNode
   return (
     <h1
       id={id}
-      className="text-3xl font-black tracking-tight text-foreground mb-4 scroll-mt-20"
+      className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-4 scroll-mt-24 lg:scroll-mt-20"
     >
       {id ? (
         <a href={`#${id}`} className="hover:text-primary transition-colors">
@@ -19,7 +19,7 @@ export function DocH2({ id, children }: { id: string; children: React.ReactNode 
   return (
     <h2
       id={id}
-      className="text-xl font-bold tracking-tight text-foreground mt-12 mb-4 scroll-mt-20 group"
+      className="text-lg md:text-xl font-bold tracking-tight text-foreground mt-12 mb-4 scroll-mt-24 lg:scroll-mt-20 group"
     >
       <a href={`#${id}`} className="hover:text-primary transition-colors">
         {children}
@@ -32,7 +32,7 @@ export function DocH3({ id, children }: { id: string; children: React.ReactNode 
   return (
     <h3
       id={id}
-      className="text-base font-semibold text-foreground mt-8 mb-3 scroll-mt-20"
+      className="text-base font-semibold text-foreground mt-8 mb-3 scroll-mt-24 lg:scroll-mt-20"
     >
       <a href={`#${id}`} className="hover:text-primary transition-colors">
         {children}
@@ -98,43 +98,45 @@ export function ParamTable({
 }) {
   return (
     <div className="rounded-lg border border-border overflow-hidden mb-6">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-border bg-secondary">
-            <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Parameter</th>
-            <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Type</th>
-            <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Required</th>
-            <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {params.map((p, i) => (
-            <tr key={p.name} className={cn("border-b border-border last:border-0", i % 2 !== 0 && "bg-secondary/30")}>
-              <td className="px-4 py-3">
-                <code className="text-xs font-mono text-primary">{p.name}</code>
-              </td>
-              <td className="px-4 py-3">
-                <code className="text-xs font-mono text-muted-foreground">{p.type}</code>
-              </td>
-              <td className="px-4 py-3">
-                {p.required ? (
-                  <span className="text-xs text-primary font-medium">Yes</span>
-                ) : (
-                  <span className="text-xs text-muted-foreground">No</span>
-                )}
-              </td>
-              <td className="px-4 py-3 text-xs text-muted-foreground">
-                {p.description}
-                {p.default && (
-                  <span className="ml-1 text-muted-foreground/60">
-                    Default: <code className="font-mono">{p.default}</code>
-                  </span>
-                )}
-              </td>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border bg-secondary">
+              <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">Parameter</th>
+              <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">Type</th>
+              <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">Required</th>
+              <th className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Description</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {params.map((p, i) => (
+              <tr key={p.name} className={cn("border-b border-border last:border-0", i % 2 !== 0 && "bg-secondary/30")}>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <code className="text-xs font-mono text-primary">{p.name}</code>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <code className="text-xs font-mono text-muted-foreground">{p.type}</code>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  {p.required ? (
+                    <span className="text-xs text-primary font-medium">Yes</span>
+                  ) : (
+                    <span className="text-xs text-muted-foreground">No</span>
+                  )}
+                </td>
+                <td className="px-4 py-3 text-xs text-muted-foreground">
+                  {p.description}
+                  {p.default && (
+                    <span className="ml-1 text-muted-foreground/60">
+                      Default: <code className="font-mono">{p.default}</code>
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
@@ -181,28 +183,30 @@ export function DataTable({
 }) {
   return (
     <div className="rounded-lg border border-border overflow-hidden mb-6">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-border bg-secondary">
-            {headers.map((h) => (
-              <th key={h} className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => (
-            <tr key={i} className={cn("border-b border-border last:border-0", i % 2 !== 0 && "bg-secondary/30")}>
-              {row.map((cell, j) => (
-                <td key={j} className="px-4 py-3 text-xs text-muted-foreground">
-                  <code className={cn("font-mono", j === 0 && "text-primary")}>{cell}</code>
-                </td>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border bg-secondary">
+              {headers.map((h) => (
+                <th key={h} className="text-left px-4 py-2.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">
+                  {h}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr key={i} className={cn("border-b border-border last:border-0", i % 2 !== 0 && "bg-secondary/30")}>
+                {row.map((cell, j) => (
+                  <td key={j} className="px-4 py-3 text-xs text-muted-foreground">
+                    <code className={cn("font-mono", j === 0 && "text-primary")}>{cell}</code>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

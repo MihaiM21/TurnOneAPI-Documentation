@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
-import { SiteHeader } from "@/components/site-header"
-import { DocsSidebar } from "@/components/docs-sidebar"
+import { DocsLayoutClient } from "@/components/docs-layout-client"
 
 export const metadata: Metadata = {
   title: {
@@ -11,21 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
-
-      {/* Sidebar */}
-      <DocsSidebar />
-
-      {/* Main content — offset for sidebar + header */}
-      <div className="lg:pl-64">
-        <main className="pt-14 min-h-screen">
-          <div className="xl:pr-4">
-            {children}
-          </div>
-        </main>
-      </div>
-    </div>
-  )
+  return <DocsLayoutClient>{children}</DocsLayoutClient>
 }
